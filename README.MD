@@ -1,3 +1,5 @@
+## 协议详解
+![协议详解](./time.gif)
 ## mysql简介
 ### Redis 是完全开源并免费的，遵守BSD协议，是一个高性能的key-value数据库中
 ### Redis 与其他key-value 缓存产品有以下三个特点
