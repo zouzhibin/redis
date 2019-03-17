@@ -43,3 +43,44 @@ redis用于存储使用较为频繁的数据到缓存中，读取速度快
 （3）需求上
 mysql和redis因为需求的不同，一般都是配合使用。
 ```
+
+### redis数据类型
+- String(字符串)
+- Hash(哈希)
+    Redis hash 是一个键值(key=>value)对集合。hash 特别适合用于存储对象。
+- List(列表) 数组
+- Set（集合）
+    Redis的Set是string类型的无序集合。集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。
+- zset(sorted set：有序集合)
+   Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
+不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+    zset的成员是唯一的,但分数(score)却可以重复。 
+
+### 命令使用
+1. 字符串使用方法
+```
+set name a   设置一个name 等于a的字符串
+get name  得到这个值
+expire name 5 设置过期时间为5秒
+ttl name 查看过期时间
+keys * 查看列表
+```   
+2. Hash使用方法
+```
+hset obj name a  HSET KEY_NAME FIELD VALUE 将哈希表 key 中的字段 field 的值设为 value 
+hget obj name 获取
+``` 
+3. 列表使用
+```
+Redis列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
+lpush arr1 1 2 3 4 5 6 往数组的左边输入1 2 3 4 5 6
+rpush arr1 7 8 9 往数组的右边输入1 2 3 4 5 6
+lrange arr1 0 -1 查看所有的 -1 指的是最后一个元素
+lrem arr 8 1 从数组arr的检索出8位然后删掉里面的数字1
+```
+4. Set（集合）
+```
+sadd hel 1 1 1 1 1  //不能添加重复性的 只能添加1
+smembers hel  返回集合中的所有成员
+srem hel 1 删除掉集合中的一项
+```
